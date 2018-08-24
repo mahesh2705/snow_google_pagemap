@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="cmn_map_page">
+    <cmn_map_page action="INSERT_OR_UPDATE">
+        <center_address>Yogododji, Africa</center_address>
+        <center_latitude/>
+        <center_longitude/>
+        <controls_size>large</controls_size>
+        <initial_zoom>10</initial_zoom>
+        <name>x_270741_googlemap_ex</name>
+        <overview>true</overview>
+        <refresh_on_zoom>true</refresh_on_zoom>
+        <script><![CDATA[//setup new GlideRecord query on the incident table
+var gr = new GlideRecord("incident");
+//add condition for priority 1
+gr.addQuery('priority', '1');
+//add condition for active incidents
+gr.addActiveQuery();
+//execute the query
+gr.query();
+ 
+//loop through the list of incidents returned by the query
+while (gr.next()) {
+ 
+ //create a new map item to display - linked to the current incident record
+ var item = map.addItem(gr);
+ //add the latitude value from the incident's location
+ item.latitude = gr.location.latitude;
+ //add the longitude value from the incident's location
+ item.longitude = gr.location.longitude;
+ //add the incident number to the dialog title
+ item.dialog_title = gr.getDisplayValue();
+ //link to the icon image
+ item.icon = "http://maps.google.com/mapfiles/kml/pal3/icon51.png";
+ //set the icon size
+ item.icon_width = "16";
+ item.icon_height = "16";
+}]]></script>
+        <show_device_location>true</show_device_location>
+        <suffix>ex</suffix>
+        <sys_class_name>cmn_map_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-08-24 08:05:22</sys_created_on>
+        <sys_id>bdc50c3edb4823001b610181ca961998</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_270741_googlemap_ex</sys_name>
+        <sys_package display_value="Googlemap" source="x_270741_googlemap">d5b5c07edb4823001b610181ca961964</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Googlemap">d5b5c07edb4823001b610181ca961964</sys_scope>
+        <sys_update_name>cmn_map_page_bdc50c3edb4823001b610181ca961998</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-24 08:05:22</sys_updated_on>
+        <type>satellite</type>
+        <type_selection>buttons</type_selection>
+    </cmn_map_page>
+</record_update>
